@@ -1,40 +1,127 @@
 #include <stdio.h>
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+
 
 int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+   const int SIZE = 10;
+    int matriz[SIZE][SIZE];
 
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
+   
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            matriz[i][j] = 0; 
+        }
+    }
 
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
+      printf("\n\n");
     
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
+    for(int i = 0; i < SIZE; i++){
+        for(int j=0; j < SIZE; j++){
+            if(i==1 && j > 2 && j <8 )
+                matriz[i][j] = 3;
 
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
+            if(i==9 && j > 1 && j <5 )
+                matriz[i][j] = 3;
+
+            if(i== j && i < 6 )
+                matriz[i][j] = 3;        
+        }
+    }
+        for (int i = SIZE - 1; i >=0; i--) {
+            if(i >5)
+             matriz[i][SIZE - 1-i] = 3;
+    }
+
+
+        for (int i = 0; i < SIZE; i++) {
+            printf("\n\t");
+            for (int j = 0; j < SIZE; j++) {
+                printf("%d ", matriz[i][j]); 
+        }
+      
+    }
+    printf("\n\n");
+
+
+    int cone[3][5];
+
+    // Preenche a matriz automaticamente com base no padrão fornecido
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            // Condições para preencher a matriz
+            if (i == 0 && j == 2) {
+                cone[i][j] = 1;
+            } else if (i == 1 && j >= 1 && j <= 3) {
+                cone[i][j] = 1;
+            } else if (i == 2) {
+                cone[i][j] = 1;
+            } else {
+                cone[i][j] = 0;
+            }
+        }
+    }
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", cone[i][j]);
+        }
+        printf("\n");  // Quebra de linha para a próxima linha da matriz
+    }
+
+    printf("\n\n");
+
+
+ int octaedro[3][5];
+
+    // Preenche a matriz automaticamente com base no padrão fornecido
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            // Condições para preencher a matriz com base no padrão
+            if ((i == 0 || i == 2) && j == 2) {
+                octaedro[i][j] = 1; 
+            } else if (i == 1 && (j >= 1 && j <= 3)) {
+                octaedro[i][j] = 1; 
+            } else {
+                octaedro[i][j] = 0; 
+            }
+        }
+    }
+
+    // Imprime a matriz
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", octaedro[i][j]);
+        }
+        printf("\n");  // Quebra de linha para a próxima linha da matriz
+    }
+
+ printf("\n\n");
+    
+   int cruz[3][5];
+
+    // Preenche a matriz automaticamente com base no padrão fornecido
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            // Condições para preencher a matriz com base no padrão
+            if ((i == 0 || i == 2) && j == 2) {
+                cruz[i][j] = 1; 
+            } else if (i == 1) {
+                cruz[i][j] = 1; 
+            } else {
+                cruz[i][j] = 0;
+            }
+        }
+    }
+
+    // Imprime a matriz
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", cruz[i][j]);
+        }
+        printf("\n");  // Quebra de linha para a próxima linha da matriz
+    }
+
+    printf("\n\n");
 
     return 0;
 }
